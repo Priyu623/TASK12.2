@@ -1,1 +1,10 @@
+region: us-east-1
+instance_type: t2.micro
+image: ami-096fda3c22c1c990a
+vpc_subnet_id: subnet-51bdfa1c
+group_name: priya
+webserver_key_name: aws_ansible
+webserver_count: 2
 
+loadbalancer_key_name: aws_ansible
+loadbalancer_count: 1
