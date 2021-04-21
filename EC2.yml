@@ -1,1 +1,42 @@
+- hosts: localhost
+  vars_files:
+          - key.yml
+          - variable.yml
+
+  tasks:
+          - name: TO LAUNCH THE WEBSERVER
+            ec2:
+                    region: "{{region}}"
+                    key_name: "{{webserver_key_name}}"
+                    instance_type: "{{instance_type}}"
+                    image: "{{image}}"
+                    group: "{{group_name}}"
+                    vpc_subnet_id: "{{vpc_subnet_id}}"
+                    count: "{{webserver_count}}"
+                    wait: yes
+                    instance_tags:
+                            Name: Webserver
+                    state: present
+                    assign_public_ip: yes
+                    aws_access_key: "{{acc_key}}"
+                    aws_secret_key: "{{sec_key}}"
+                    
+                    
+          - name: TO LAUNCH THE LOADBALANCER SERVER
+            ec2:
+                    region: "{{region}}"
+                    key_name: "{{loadbalancer_key_name}}"
+                    instance_type: "{{instance_type}}"
+                    image: "{{image}}"
+                    group: "{{group_name}}"
+                    vpc_subnet_id: "{{vpc_subnet_id}}"
+                    count: "{{loadbalancer_count}}"
+                    wait: yes
+                    instance_tags:
+                            Name: Loadbalancer
+                    state: present
+                    assign_public_ip: yes
+                    aws_access_key: "{{acc_key}}"
+                    aws_secret_key: "{{sec_key}}"
+
 
